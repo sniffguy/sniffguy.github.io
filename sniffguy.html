@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Galindo&family=Modak&display=swap" rel="stylesheet">
+    <title>Just a sniff guy</title>
+  <style>
+body {
+  margin: 0;
+}
+
+.marquee-container {
+  background: black;
+  color: white;
+  padding: 20px;
+  word-spacing: 30px;
+  font-family: "Modak", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  user-select: none;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.main {
+  background: #25ba4d;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+}
+
+.main .text {
+  color: black;
+  font-family: "Modak", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 120px;
+  user-select: none;
+}
+
+.main .img {
+  height: 350px;
+  width: 350px;
+  background-image: url('https://i.ibb.co/RzZbDxn/072e0790-cb56-4683-aee4-56c38252c3e3.jpg');
+  background-size: 100% 100%;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.6);
+  animation: spin 5s infinite ease-in-out;
+}
+@keyframes spin { 
+    10% { 
+        -webkit-transform: rotate(10deg); 
+        transform:rotate(10deg);
+    }
+    15% {
+      background-image: url('https://i.ibb.co/RzZbDxn/072e0790-cb56-4683-aee4-56c38252c3e3.jpg');
+    }
+    18% {
+      background-image: url('https://i.ibb.co/k4550KT/072e0790-cb56-4683-aee4-56c38252c3e3.png');
+    }
+    20% {
+      background-image: url('https://i.ibb.co/RzZbDxn/072e0790-cb56-4683-aee4-56c38252c3e3.jpg');
+    }
+    22% {
+      background-image: url('https://i.ibb.co/RzZbDxn/072e0790-cb56-4683-aee4-56c38252c3e3.jpg');
+    }
+    25% {
+      background-image: url('https://i.ibb.co/k4550KT/072e0790-cb56-4683-aee4-56c38252c3e3.png');
+    }
+    30% {
+      background-image: url('https://i.ibb.co/RzZbDxn/072e0790-cb56-4683-aee4-56c38252c3e3.jpg');
+    }
+    40% { 
+        -webkit-transform: rotate(0deg); 
+        transform:rotate(0deg);
+    }
+    60% { 
+        -webkit-transform: rotate(-10deg); 
+        transform:rotate(-10deg); 
+    }
+    80% { 
+        -webkit-transform: rotate(5deg); 
+        transform:rotate(5deg);
+    }
+    100% { 
+        -webkit-transform: rotate(0deg); 
+        transform:rotate(0deg);
+    }
+}
+
+.text-main {
+  background: #25ba4d;
+  padding: 20px 20vw;
+}
+
+.content {
+  background: black;
+  padding: 20px 40px;
+  color: white;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.6);
+  font-size: 20px;
+  line-height: 30px;
+  font-family: "Galindo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.relative {
+  position: relative;
+  overflow: hidden;
+}
+
+.feet {
+  position: absolute;
+  bottom: -100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.8));
+}
+
+.particle {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  background-image: url('https://i.ibb.co/Zd4GCXs/pngtree-green-smell-steam-cloud-smoke-png-image-4657383.png');
+  background-size: 100%;
+  opacity: 0.75;
+}
+
+@keyframes particle {
+  0% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: black;
+  padding: 20px;
+  display: flex;
+  gap: 32px;
+  border: 2px solid white;
+}
+
+.fixed svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1180px) {
+  .text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .text-main {
+    padding: 20px 0;
+  }
+}
+  </style>
+  <script>
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${(Math.random() - 0.5) * 128 + window.innerWidth / 2}px`;
+            particle.style.bottom = '50px';
+            document.querySelector('.relative').appendChild(particle);
+            return particle;
+        }
+
+        function updateParticle(particle) {
+            const yPos = parseFloat(particle.style.bottom);
+            particle.style.bottom = `${yPos + 2}px`;
+
+            if (particle.getBoundingClientRect().top + document.documentElement.scrollTop < 275) {
+                particle.style.animation = "particle 0.2s 1 ease-in-out"
+                setTimeout(() => particle.remove(), 200);
+            }
+        }
+
+        function animateParticles() {
+            particles.forEach(updateParticle);
+            requestAnimationFrame(animateParticles);
+        }
+
+        const particles = [];
+        const particleInterval = 1000;
+
+        setInterval(() => {
+            const newParticle = createParticle();
+            particles.push(newParticle);
+        }, particleInterval);
+
+        animateParticles();
+    </script>
+</head>
+<body>
+  <div class="relative">
+    <div class="marquee-container">
+        <div class="marquee-text">
+            $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY
+        </div>
+        <div class="marquee-text">
+            $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY
+        </div>
+    </div>
+  <div class="main">
+    <div class="text">BUY -></div>
+    <div class="img"></div>
+    <div class="text"><- BUY</div>
+  </div>
+  <div class="marquee-container">
+        <div class="marquee-text">
+            $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY
+        </div>
+        <div class="marquee-text">
+            $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY $SNIFFGUY
+        </div>
+    </div>
+  <div class="text-main">
+    <div class="content">
+      <b>SNIFFGUY is a memcoin in the Solana blockchain with high potential. It represents a chill guy in real life sniffing the camera. You just need to buy, hold that coin on pump.fun and then on Raydium and wait for the imminent profit. Nobody reads this text anyway, so I'll just fill in the rest with the lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis iaculis ex, sit amet rutrum felis tempor vitae. Proin gravida turpis ac posuere cursus. Nullam ut metus a nibh pretium ultricies vel in lectus. Nullam vitae ligula justo. Mauris efficitur ex at laoreet fringilla. Nunc tincidunt ultricies vehicula. In maximus venenatis posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin elit pulvinar turpis aliquet, nec cursus velit maximus. Vestibulum in augue vitae tortor porttitor ultrices. Phasellus leo est, dictum ut neque quis, fermentum hendrerit nisi. Nunc eleifend ligula sodales elementum laoreet. Cras porttitor nisl sit amet semper faucibus.</b>
+    </div>
+  </div>
+  <div class="feet">
+    <img src="https://i.ibb.co/ZXG8mVL/pngimg-com-leg-PNG4809.png">
+  </div>
+</div>
+    <div class="fixed">
+      <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.1117 4.49449C23.4296 2.94472 21.9074 1.65683 20.4317 2.227L2.3425 9.21601C0.694517 9.85273 0.621087 12.1572 2.22518 12.8975L6.1645 14.7157L8.03849 21.2746C8.13583 21.6153 8.40618 21.8791 8.74917 21.968C9.09216 22.0568 9.45658 21.9576 9.70712 21.707L12.5938 18.8203L16.6375 21.8531C17.8113 22.7334 19.5019 22.0922 19.7967 20.6549L23.1117 4.49449ZM3.0633 11.0816L21.1525 4.0926L17.8375 20.2531L13.1 16.6999C12.7019 16.4013 12.1448 16.4409 11.7929 16.7928L10.5565 18.0292L10.928 15.9861L18.2071 8.70703C18.5614 8.35278 18.5988 7.79106 18.2947 7.39293C17.9906 6.99479 17.4389 6.88312 17.0039 7.13168L6.95124 12.876L3.0633 11.0816ZM8.17695 14.4791L8.78333 16.6015L9.01614 15.321C9.05253 15.1209 9.14908 14.9366 9.29291 14.7928L11.5128 12.573L8.17695 14.4791Z"/>
+</svg>
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="inline-block" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+    </div>
+</body>
+</html>
